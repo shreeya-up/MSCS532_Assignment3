@@ -22,8 +22,8 @@ def partition(a, lo, hi, p_index):
     a[i + 1], a[hi] = a[hi], a[i + 1]
     return i + 1
 
-def ran_quick_sort(a, p_index):
-    """Sorts the array in place using the randomizedquicksort algorithm."""
+def quick_sort(a, p_index):
+    """Sorts the array in place using the quicksort algorithm."""
     def sort(lo, hi):
         while lo<hi:
             q = partition(a, lo, hi, p_index)
@@ -35,15 +35,10 @@ def ran_quick_sort(a, p_index):
                 hi = q - 1
     sort(0, len(a) - 1)
 
-def det_quick_sort(a, p_index = "first"):
-    """Sorts the array in place using the deterministic quicksort algorithm."""
-    def sort(lo, hi):
-        while lo<hi:
-            q = partition(a, lo, hi, p_index)
-            if q - lo < hi - q:
-                sort(lo, q - 1)
-                lo = q + 1
-            else:
-                sort(q + 1, hi)
-                hi = q - 1
-    sort(0, len(a) - 1)
+def det_quick_sort(a):
+       """Sorts the array in place using the deterministic quicksort algorithm."""
+       quick_sort(a, "first")
+
+def ran_quick_sort(a):
+    """Sorts the array in place using the randomized quicksort algorithm."""
+    quick_sort(a, "random")
