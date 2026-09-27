@@ -1,12 +1,17 @@
+import random
+
 
 class HashTable:
     def __init__(self, m=8):
         self.m = m
         self.table = [[] for _ in range(m)]
         self.n =0
+        self.p = 2**61 - 1
+        self.a = random.randint(1, self.p - 1)
+        self.b = random.randint(0, self.p - 1)
 
     def _hash(self, key):
-        return hash(key) % self.m
+        return ((self.a * hash(key) + self.b) % self.p) % self.m
 
     def insert(self, key, value):
         i = self._hash(key)
