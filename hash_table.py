@@ -11,7 +11,8 @@ class HashTable:
         self.b = random.randint(0, self.p - 1)
 
     def _hash(self, key):
-        return ((self.a * hash(key) + self.b) % self.p) % self.m
+        k = hash(key) % self.p              #Deals with negative numbers, maps to different results
+        return ((self.a * k + self.b) % self.p) % self.m
 
     def insert(self, key, value):
         i = self._hash(key)
