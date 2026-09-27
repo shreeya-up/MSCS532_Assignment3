@@ -10,4 +10,10 @@ class HashTable:
 
     def insert(self, key, value):
         i = self._hash(key)
-        self
+        for j, (k, v) in enumerate(self.table[i]):
+            if k == key:
+                self.table[i][j] = (key, value)
+                return
+        self.table[i].append((key, value))
+        self.n += 1
+            
