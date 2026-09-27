@@ -12,14 +12,14 @@ def partition(a, lo, hi, p_index):
         m = sorted((lo, mid, hi), key=lambda i: a[i])[1]
     else:
         m = hi
-    a[m], a[hi] = a[hi], a[m]
+    a[m], a[hi] = a[hi], a[m]       #Moving chosen pivot to the end
     x = a[hi]
-    i = lo - 1
+    i = lo - 1                      #boundary index
     for j in range(lo, hi):
         if a[j] <= x:
             i += 1
             a[i], a[j] = a[j], a[i]
-    a[i + 1], a[hi] = a[hi], a[i + 1]
+    a[i + 1], a[hi] = a[hi], a[i + 1]   #placing pivot in it's final position
     return i + 1
 
 def quick_sort(a, p_index):
@@ -28,7 +28,7 @@ def quick_sort(a, p_index):
         while lo<hi:
             q = partition(a, lo, hi, p_index)
             if q - lo < hi - q:
-                sort(lo, q - 1)
+                sort(lo, q - 1)         
                 lo = q + 1
             else:
                 sort(q + 1, hi)
